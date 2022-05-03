@@ -47,7 +47,7 @@ var _ = Describe("RelPaginator", func() {
 
 	It("should create a Pagination with its filters info", func() {
 		pageSort := relpaginator.PageSort{
-			Page:     float64(pageRequested),
+			Page:     pageRequested,
 			SortBy:   []string{"field_one", "field_two"},
 			SortDesc: []bool{true, false},
 		}
@@ -81,7 +81,7 @@ var _ = Describe("RelPaginator", func() {
 
 	It("should create a Pagination without filters info", func() {
 		pageSort := relpaginator.PageSort{
-			Page: float64(pageRequested),
+			Page: pageRequested,
 		}
 		var users []User
 		expected_user_find_all := []User{{}, {}, {}, {}, {}, {}, {}}
@@ -112,7 +112,7 @@ var _ = Describe("RelPaginator", func() {
 			nextPageExpected = uint(1)
 			totalPagesExpected = uint(100)
 			pageSort := relpaginator.PageSort{
-				Page: float64(pageRequested),
+				Page: pageRequested,
 			}
 			var users []User
 			expected_user_find_all := []User{{}, {}, {}, {}, {}, {}, {}}
@@ -141,7 +141,7 @@ var _ = Describe("RelPaginator", func() {
 		It("should return a PageError", func() {
 			pageRequested = uint(101)
 			pageSort := relpaginator.PageSort{
-				Page: float64(pageRequested),
+				Page: pageRequested,
 			}
 			var users []User
 			expected_user_find_all := []User{{}, {}, {}, {}, {}, {}, {}}
@@ -169,7 +169,7 @@ var _ = Describe("RelPaginator", func() {
 			nextPageExpected = uint(1)
 			totalPagesExpected = uint(1)
 			pageSort := relpaginator.PageSort{
-				Page: float64(pageRequested),
+				Page: pageRequested,
 			}
 			var users []User
 			expected_user_find_all := []User{{}, {}, {}, {}, {}, {}, {}}

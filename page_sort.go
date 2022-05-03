@@ -8,8 +8,8 @@ import (
 )
 
 type PageSort struct {
-	Page         float64  `validate:"required,gt=0" json:"page_number,omitempty"`
-	ItemsPerPage float64  `json:"itemsPerPage,omitempty"`
+	Page         uint     `json:"page_number,omitempty"`
+	ItemsPerPage uint     `json:"itemsPerPage,omitempty"`
 	SortBy       []string `json:"sortBy,omitempty"`
 	SortDesc     []bool   `json:"sortDesc,omitempty"`
 	GroupBy      []string `json:"groupBy,omitempty"`
