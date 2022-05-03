@@ -49,15 +49,18 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	// You can create a
+	// You can create a Paginator injecting a rel.Repository instance and a
+	// RelPaginatorConfig which is mandatory.
 	paginator := relpaginator.NewPaginator(db, &relpaginator.RelPaginatorConfig{
 		PageSize: 4,
 	})
 
-	usersFoundPage := []User{}
-	page, err := paginator.CreatePagination(ctx, UserTable, &usersFoundPage, &relpaginator.PageSort{
+	// PageSort provides all need data to request pages and apply filters
+	// to search. It has json tags to be used to unmarshall a request
+	pageSort := relpaginator.PageSort{
 		Page: 1,
-	})
+	}
+	page, err := paginator.CreatePagination(ctx, UserTable, &[]User{}, &pageSort)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -65,12 +68,14 @@ func main() {
 	data := page.Data.(*[]User)
 
 	log.Println("Found quantity: ", len(*data))
-	for _, u := range *data {
-		log.Println(u)
+	for i, u := range *data {
+		i++
+		log.Printf("%d: %+v", i, u)
 	}
 
 }
 
+// createTable create the need table to the example
 func createTable(ctx context.Context, db rel.Repository) error {
 	if _, _, err := db.Exec(ctx, `create table if not exists public.users (
 		id integer,
@@ -85,6 +90,7 @@ func createTable(ctx context.Context, db rel.Repository) error {
 	return nil
 }
 
+// populateDB fills DB with data
 func populateDB(ctx context.Context, db rel.Repository) error {
 	if count := db.MustCount(ctx, UserTable, where.Eq("name", "name1")); count == 0 {
 		users := []User{
