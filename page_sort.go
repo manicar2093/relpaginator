@@ -7,7 +7,6 @@ import (
 	"github.com/go-rel/rel/sort"
 )
 
-// PageSort
 type PageSort struct {
 	Page         float64  `validate:"required,gt=0" json:"page_number,omitempty"`
 	ItemsPerPage float64  `json:"itemsPerPage,omitempty"`
@@ -15,9 +14,10 @@ type PageSort struct {
 	SortDesc     []bool   `json:"sortDesc,omitempty"`
 	GroupBy      []string `json:"groupBy,omitempty"`
 	GroupDesc    []bool   `json:"groupDesc,omitempty"`
-	MustSort     bool     `json:"mustSort,omitempty"`
-	MultiSort    bool     `json:"multiSort,omitempty"`
-	filters      []rel.Querier
+	// TODO: make mustSort and multiSort useful
+	MustSort  bool          `json:"mustSort,omitempty"`
+	MultiSort bool          `json:"multiSort,omitempty"`
+	filters   []rel.Querier `json:"-"`
 }
 
 func CreatePageSortFromMap(values map[string]interface{}) *PageSort {
@@ -33,6 +33,7 @@ func CreatePageSortFromMap(values map[string]interface{}) *PageSort {
 	return &res
 }
 
+// SetFiltersQueries allows to add filters to be consider to the pagination
 func (c *PageSort) SetFiltersQueries(queries ...rel.Querier) {
 	c.filters = queries
 }
