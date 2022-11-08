@@ -15,15 +15,15 @@ type MockPaginable struct {
 }
 
 // CreatePagination provides a mock function with given fields: ctx, tableName, holder, pageSort
-func (_m *MockPaginable) CreatePagination(ctx context.Context, tableName string, holder interface{}, pageSort *PageSort) (*Paginator, error) {
+func (_m *MockPaginable) CreatePagination(ctx context.Context, tableName string, holder interface{}, pageSort *PageSort) (*Page, error) {
 	ret := _m.Called(ctx, tableName, holder, pageSort)
 
-	var r0 *Paginator
-	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, *PageSort) *Paginator); ok {
+	var r0 *Page
+	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, *PageSort) *Page); ok {
 		r0 = rf(ctx, tableName, holder, pageSort)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*Paginator)
+			r0 = ret.Get(0).(*Page)
 		}
 	}
 
@@ -38,7 +38,7 @@ func (_m *MockPaginable) CreatePagination(ctx context.Context, tableName string,
 }
 
 // CreatePaginator provides a mock function with given fields: ctx, tableName, holder, pageNumber, queries
-func (_m *MockPaginable) CreatePaginator(ctx context.Context, tableName string, holder interface{}, pageNumber int, queries ...rel.Querier) (*Paginator, error) {
+func (_m *MockPaginable) CreatePaginator(ctx context.Context, tableName string, holder interface{}, pageNumber int, queries ...rel.Querier) (*Page, error) {
 	_va := make([]interface{}, len(queries))
 	for _i := range queries {
 		_va[_i] = queries[_i]
@@ -48,12 +48,12 @@ func (_m *MockPaginable) CreatePaginator(ctx context.Context, tableName string, 
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
-	var r0 *Paginator
-	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, int, ...rel.Querier) *Paginator); ok {
+	var r0 *Page
+	if rf, ok := ret.Get(0).(func(context.Context, string, interface{}, int, ...rel.Querier) *Page); ok {
 		r0 = rf(ctx, tableName, holder, pageNumber, queries...)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*Paginator)
+			r0 = ret.Get(0).(*Page)
 		}
 	}
 

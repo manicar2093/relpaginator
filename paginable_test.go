@@ -68,7 +68,7 @@ var _ = Describe("RelPaginator", func() {
 			),
 		).Result(expected_user_find_all)
 
-		page, err := paginable.CreatePagination(context.Background(), dbTable, &users, &pageSort)
+		page, err := paginable.CreatePage(context.Background(), dbTable, &users, &pageSort)
 
 		Expect(err).ToNot(HaveOccurred())
 		Expect(page.TotalEntries).ToNot(BeZero())
@@ -94,7 +94,7 @@ var _ = Describe("RelPaginator", func() {
 			),
 		).Result(expected_user_find_all)
 
-		page, err := paginable.CreatePagination(context.Background(), dbTable, &users, &pageSort)
+		page, err := paginable.CreatePage(context.Background(), dbTable, &users, &pageSort)
 
 		Expect(err).ToNot(HaveOccurred())
 		Expect(page.TotalEntries).ToNot(BeZero())
@@ -125,7 +125,7 @@ var _ = Describe("RelPaginator", func() {
 				),
 			).Result(expected_user_find_all)
 
-			page, err := paginable.CreatePagination(context.Background(), dbTable, &users, &pageSort)
+			page, err := paginable.CreatePage(context.Background(), dbTable, &users, &pageSort)
 
 			Expect(err).ToNot(HaveOccurred())
 			Expect(page.TotalEntries).ToNot(BeZero())
@@ -153,7 +153,7 @@ var _ = Describe("RelPaginator", func() {
 				),
 			).Result(expected_user_find_all)
 
-			page, err := paginable.CreatePagination(context.Background(), dbTable, &users, &pageSort)
+			page, err := paginable.CreatePage(context.Background(), dbTable, &users, &pageSort)
 
 			Expect(page).To(BeNil())
 			Expect(err).To(HaveOccurred())
@@ -181,7 +181,7 @@ var _ = Describe("RelPaginator", func() {
 				),
 			).Result(expected_user_find_all)
 
-			page, err := paginable.CreatePagination(context.Background(), dbTable, &users, &pageSort)
+			page, err := paginable.CreatePage(context.Background(), dbTable, &users, &pageSort)
 
 			Expect(err).ToNot(HaveOccurred())
 			Expect(page.TotalEntries).ToNot(BeZero())

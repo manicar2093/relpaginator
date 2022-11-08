@@ -7,21 +7,21 @@ import (
 	"github.com/go-rel/rel"
 )
 
-type PaginableImpl struct {
+type Paginator struct {
 	repo   rel.Repository
 	config *RelPaginatorConfig
 }
 
-func NewPaginator(repo rel.Repository, config *RelPaginatorConfig) Paginable {
-	return PaginableImpl{repo: repo, config: config}
+func NewPaginator(repo rel.Repository, config *RelPaginatorConfig) *Paginator {
+	return &Paginator{repo: repo, config: config}
 }
 
-func (c PaginableImpl) CreatePagination(
+func (c *Paginator) CreatePage(
 	ctx context.Context,
 	tableName string,
 	holder interface{},
 	pageSort *PageSort,
-) (*Paginator, error) {
+) (*Page, error) {
 	pageSize := c.getPageSize(pageSort)
 	page := pageSort.GetPage()
 
@@ -53,7 +53,7 @@ func (c PaginableImpl) CreatePagination(
 		return nil, err
 	}
 
-	return &Paginator{
+	return &Page{
 		TotalPages:   totalPages,
 		CurrentPage:  page,
 		PreviousPage: page - 1,
@@ -92,7 +92,7 @@ func getSliceCount(data interface{}) uint {
 
 }
 
-func (c PaginableImpl) getPageSize(pageSort *PageSort) uint {
+func (c *Paginator) getPageSize(pageSort *PageSort) uint {
 	if pageSort.GetItemsPerPage() > 0 {
 		return pageSort.GetItemsPerPage()
 	}

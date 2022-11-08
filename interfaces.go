@@ -5,10 +5,10 @@ import (
 )
 
 type Paginable interface {
-	CreatePagination(
+	CreatePage(
 		ctx context.Context,
 		tableName string,
 		holder interface{},
 		pageSort *PageSort,
-	) (*Paginator, error)
+	) (*Page, error)
 }

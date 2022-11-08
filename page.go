@@ -1,6 +1,6 @@
 package relpaginator
 
-type Paginator struct {
+type Page struct {
 	TotalPages   uint        `json:"total_pages,omitempty"`
 	CurrentPage  uint        `json:"current_page,omitempty"`
 	PreviousPage uint        `json:"previous_page,omitempty"`
