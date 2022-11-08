@@ -60,7 +60,7 @@ func main() {
 	pageSort := relpaginator.PageSort{
 		Page: 1,
 	}
-	page, err := paginator.CreatePagination(ctx, UserTable, &[]User{}, &pageSort)
+	page, err := paginator.CreatePage(ctx, UserTable, &[]User{}, &pageSort)
 	if err != nil {
 		log.Fatalln(err)
 	}
